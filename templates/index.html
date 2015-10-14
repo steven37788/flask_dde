@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super()}}
+        <!--<link type="text/css" rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css" />-->
+        <script type="text/javascript" src="../static/jquery-1.11.3.min.js"></script>
+        <!--<script type="text/javascript" src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>-->
+        <script type="text/javascript" src="../static/jquery.tableSortable.js"></script>
+        <script>
+        $(document).ready(function(){
+            $("#ddetable").tableSortable();
+        });
+        </script>
+{% endblock %}
+
+{% block title %}Flask-DDE{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>DDX更新时间</h1>
+    <div class="container">
+        <h3> Table Sortable</h3>
+        <!--<table class="table table-sortable">-->
+            <!--<thead>-->
+                <!--<tr>-->
+                    <!--&lt;!&ndash; We disable sorting by id&ndash;&gt;-->
+                    <!--<th data-table-sortable-disable>#id</th>-->
+                    <!--<th>First Name</th>-->
+                    <!--<th>Sur Name</th>-->
+                    <!--<th data-table-sortable-type="date">Created</th>-->
+                    <!--<th data-table-sortable-type="number">Number</th>-->
+                <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+                <!--<tr>-->
+                    <!--<td>1</td>-->
+                    <!--<td>john</td>-->
+                    <!--<td>Doe</td>-->
+                    <!--<td>2025-11-30</td>-->
+                    <!--<td>15</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>2</td>-->
+                    <!--<td>Jane</td>-->
+                    <!--<td>Doe</td>-->
+                    <!--<td>1970-01-01</td>-->
+                    <!--<td>1500</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>3</td>-->
+                    <!--<td>Another</td>-->
+                    <!--<td>Person</td>-->
+                    <!--<td>2015-01-03</td>-->
+                    <!--<td>1340</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>4</td>-->
+                    <!--<td>1 Lexicographic</td>-->
+                    <!--<td>Sorting</td>-->
+                    <!--<td>2014-01-04</td>-->
+                    <!--<td>22</td>-->
+                <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+
+        <table class="table table-sortable" id="ddetable">
+                <thead>
+                    <tr>
+                        <th data-table-sortable-type="number">序号</th>
+                        <th data-table-sortable-type="number">股票代码</th>
+                        <!--名称-->
+                        <th data-table-sortable-type="number">最新价</th>
+                        <th data-table-sortable-type="number">涨跌幅</th>
+                        <th data-table-sortable-type="number">换手率(%)</th>
+                        <th data-table-sortable-type="number">量比</th>
+                        <th data-table-sortable-type="number">BBD(万)</th>
+                        <th data-table-sortable-type="number">成交量</th>
+                        <th data-table-sortable-type="number">通吃率</th>
+                        <th data-table-sortable-type="number">DDX</th>
+                        <th data-table-sortable-type="number">DDY</th>
+                        <th data-table-sortable-type="number">DDZ</th>
+                        <th data-table-sortable-type="number">10日DDX</th>
+                        <th data-table-sortable-type="number">10日DDY</th>
+                        <th data-table-sortable-type="number">连续</th>
+                        <th data-table-sortable-type="number">特大单差</th>
+                        <th data-table-sortable-type="number">大单差</th>
+                        <th data-table-sortable-type="number">中单差</th>
+                        <th data-table-sortable-type="number">小单差</th>
+                        <th data-table-sortable-type="number">单数比</th>
+                        <th data-table-sortable-type="number">updatetime</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if list1 %}
+                {% for item in list1 %}
+                     <tr>
+                         <td>{{ loop.index }}</td>
+                         <td>{{ item.stockcode }}</td>
+                         <td>{{ item.price }}</td>
+                         <td>{{ item.margin }}</td>
+                         <td>{{ item.turnover }}</td>
+                         <td>{{ item.ratio }}</td>
+                         <td>{{ item.BBD }}</td>
+                         <td>{{ item.volume }}</td>
+                         <td>{{ item.sweepdeck }}</td>
+                         <td>{{ item.DDX }}</td>
+                         <td>{{ item.DDY }}</td>
+                         <td>{{ item.DDZ }}</td>
+                         <td>{{ item.tenDDX }}</td>
+                         <td>{{ item.tenDDY }}</td>
+                         <td>{{ item.continues }}</td>
+                         <td>{{ item.largediff }}</td>
+                         <td>{{ item.bigdiff }}</td>
+                         <td>{{ item.middlediff }}</td>
+                         <td>{{ item.smalldiff }}</td>
+                         <td>{{ item.sheetrate }}</td>
+                         <td>{{ item.updatetime }}</td>
+                     </tr>
+                {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+    </div>
+{% endblock %}
