@@ -17,51 +17,9 @@
 
 {% block page_content %}
 <div class="page-header">
-    <h1>DDX更新时间</h1>
+    <h1>DDX行情</h1>
     <div class="container">
-        <h3> Table Sortable</h3>
-        <!--<table class="table table-sortable">-->
-            <!--<thead>-->
-                <!--<tr>-->
-                    <!--&lt;!&ndash; We disable sorting by id&ndash;&gt;-->
-                    <!--<th data-table-sortable-disable>#id</th>-->
-                    <!--<th>First Name</th>-->
-                    <!--<th>Sur Name</th>-->
-                    <!--<th data-table-sortable-type="date">Created</th>-->
-                    <!--<th data-table-sortable-type="number">Number</th>-->
-                <!--</tr>-->
-            <!--</thead>-->
-            <!--<tbody>-->
-                <!--<tr>-->
-                    <!--<td>1</td>-->
-                    <!--<td>john</td>-->
-                    <!--<td>Doe</td>-->
-                    <!--<td>2025-11-30</td>-->
-                    <!--<td>15</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>2</td>-->
-                    <!--<td>Jane</td>-->
-                    <!--<td>Doe</td>-->
-                    <!--<td>1970-01-01</td>-->
-                    <!--<td>1500</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>3</td>-->
-                    <!--<td>Another</td>-->
-                    <!--<td>Person</td>-->
-                    <!--<td>2015-01-03</td>-->
-                    <!--<td>1340</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>4</td>-->
-                    <!--<td>1 Lexicographic</td>-->
-                    <!--<td>Sorting</td>-->
-                    <!--<td>2014-01-04</td>-->
-                    <!--<td>22</td>-->
-                <!--</tr>-->
-            <!--</tbody>-->
-        <!--</table>-->
+        <h3> DDE行情</h3>
 
         <table class="table table-sortable" id="ddetable">
                 <thead>
@@ -91,8 +49,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% if list1 %}
-                {% for item in list1 %}
+                {% if list_dde %}
+                {% for item in list_dde %}
                      <tr>
                          <td>{{ loop.index }}</td>
                          <td>{{ item.stockcode }}</td>

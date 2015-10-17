@@ -44,6 +44,37 @@ class Dde(db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
+class DayData(db.Model):
+    __tablename__ = 't_daydata'
+    # id = db.Column(db.Integer, primary_key=True)
+    openingprice = db.Column(db.Float)
+    closingprice = db.Column(db.Float)
+    highestprice = db.Column(db.Float)
+    floorPrice = db.Column(db.Float)
+    increase = db.Column(db.Float)
+    volume = db.Column(db.Float)
+    takeRate = db.Column(db.Float)
+    bbd = db.Column(db.Float)
+    ddx = db.Column(db.Float)
+    ddy = db.Column(db.Float)
+    listRate = db.Column(db.Float)
+    sListDiff = db.Column(db.Float)
+    sInflow = db.Column(db.Float)
+    mListDiff = db.Column(db.Float)
+    mInflow = db.Column(db.Float)
+    xListDiff = db.Column(db.Float)
+    xInflow = db.Column(db.Float)
+    xxListDiff = db.Column(db.Float)
+    xxInflow = db.Column(db.Float)
+    stockcode = db.Column(db.String(16), unique=True)
+    updatedate = db.Column(db.DateTime, primary_key=True)
+
+    # def __init__(self):
+    #     pass
+
+    def __repr__(self):
+        return '<User %r>' % self.username
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -57,11 +88,13 @@ def internal_server_error(e):
 
 @app.route('/')
 def index():
-    # dde = Dde()
-    # list = dde.query.all()
-    list1 = Dde.query.all()
-    # list = dde.get_tables_for_bind()
-    return render_template('index.html', list1=list1)
+    list_dde = Dde.query.all()
+    return render_template('index.html', list_dde=list_dde)
+
+@app.route('/daydata')
+def daydata():
+    list_daydata = DayData.query.all()
+    return render_template('daydata.html', list_daydata=list_daydata)
 
 
 @app.route('/user/<name>')
