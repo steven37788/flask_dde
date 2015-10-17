@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super()}}
+        <!--<link type="text/css" rel="stylesheet" href="bootstrap-3.3.4-dist/css/bootstrap.min.css" />-->
+        <script type="text/javascript" src="../static/jquery-1.11.3.min.js"></script>
+        <!--<script type="text/javascript" src="bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>-->
+        <script type="text/javascript" src="../static/jquery.tableSortable.js"></script>
+        <script>
+        $(document).ready(function(){
+            $("#daydatatable").tableSortable();
+        });
+        </script>
+{% endblock %}
+
+{% block title %}Flask-DDE{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>DDE日线数据</h1>
+    <div class="container">
+        <h3> DDE日线</h3>
+        <table class="table table-sortable" id="daydatatable">
+                <thead>
+                    <tr>
+                        <!-- "开盘价","收盘价","最高价","最低价","涨幅","成交量","通吃率","股票代码","日期","大单动向(ddx)","涨跌动因(ddy)",-->
+<!--&#45;&#45; "单数比，卖出单数／买入单数","小单差","小单流入金额","中单差","中单流入金额","大单差","大单流入金额","特大单差","特大单流入金额"-->
+                        <th data-table-sortable-type="number">序号</th>
+                        <th data-table-sortable-type="number">股票代码</th>
+                        <th data-table-sortable-type="number">开盘价</th>
+                        <th data-table-sortable-type="number">收盘价</th>
+                        <th data-table-sortable-type="number">最高价</th>
+                        <th data-table-sortable-type="number">最低价</th>
+                        <th data-table-sortable-type="number">涨幅</th>
+                        <th data-table-sortable-type="number">成交量</th>
+                        <th data-table-sortable-type="number">通吃率</th>
+                        <th data-table-sortable-type="number">BBD(万元)</th>
+                        <th data-table-sortable-type="number">大单动向(ddx)</th>
+                        <th data-table-sortable-type="number">涨跌动因(ddy)</th>
+                        <th data-table-sortable-type="number">单数比</th>
+                        <th data-table-sortable-type="number">小单差</th>
+                        <th data-table-sortable-type="number">小单流入金额</th>
+                        <th data-table-sortable-type="number">中单差</th>
+                        <th data-table-sortable-type="number">中单流入金额</th>
+                        <th data-table-sortable-type="number">大单差</th>
+                        <th data-table-sortable-type="number">大单流入金额</th>
+                        <th data-table-sortable-type="number">特大单差</th>
+                        <th data-table-sortable-type="number">特大单流入金额</th>
+                        <th data-table-sortable-type="number">日期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if list_daydata %}
+                {% for item in list_daydata %}
+                     <tr>
+                         <td>{{ loop.index }}</td>
+                         <td>{{ item.stockcode }}</td>
+                         <td>{{ item.openingprice }}</td>
+                         <td>{{ item.closingprice }}</td>
+                         <td>{{ item.highestprice }}</td>
+                         <td>{{ item.floorPrice }}</td>
+                         <td>{{ item.increase }}</td>
+                         <td>{{ item.volume }}</td>
+                         <td>{{ item.takeRate }}</td>
+                         <td>{{ item.bbd }}</td>
+                         <td>{{ item.ddx }}</td>
+                         <td>{{ item.ddy }}</td>
+                         <td>{{ item.listRate }}</td>
+                         <td>{{ item.sListDiff }}</td>
+                         <td>{{ item.sInflow }}</td>
+                         <td>{{ item.mListDiff }}</td>
+                         <td>{{ item.mInflow }}</td>
+                         <td>{{ item.xListDiff }}</td>
+                         <td>{{ item.xInflow }}</td>
+                         <td>{{ item.xxListDiff }}</td>
+                         <td>{{ item.xxInflow }}</td>
+                         <td>{{ item.updatedate }}</td>
+                     </tr>
+                {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+    </div>
+{% endblock %}
