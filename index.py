@@ -66,7 +66,7 @@ class DayData(db.Model):
     xInflow = db.Column(db.Float)
     xxListDiff = db.Column(db.Float)
     xxInflow = db.Column(db.Float)
-    stockcode = db.Column(db.String(16), unique=True)
+    stockcode = db.Column(db.String(16), unique=True, primary_key=True)
     updatedate = db.Column(db.DateTime, primary_key=True)
 
     # def __init__(self):
@@ -94,6 +94,7 @@ def index():
 @app.route('/daydata')
 def daydata():
     list_daydata = DayData.query.all()
+    print len(list_daydata);
     return render_template('daydata.html', list_daydata=list_daydata)
 
 
